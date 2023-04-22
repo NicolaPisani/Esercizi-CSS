@@ -1,10 +1,24 @@
+:root {
+    --bg-body-color:#011212;
+    --bg-ball-color: #00fff2;
+    --ball-width: 100px;
+    --ball-height: 100px;
+    --radius-bd-ball:50%;
+    --radius-boh:5%;
+    
+}
+
+
+
+
 body {
-    background-color: #011212;
+    background-color: var(--bg-body-color);
 }
 
 .ball {
-    width: 100px;
-    height: 100px;
-    background-color: #ff8800;
-    border-radius: 50px;
+    border-radius: var(--radius-bordo);
+    width: var(--ball-width);
+    height: var(--ball-height);
+    background-color: var(--bg-ball-color);
+    border-radius: var(--radius-bd-ball);
 }
