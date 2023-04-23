@@ -1,0 +1,45 @@
+
+:root{
+    --border-card: 2px grey solid;
+}
+
+body{
+    margin: 12px;
+    padding: 0px;
+}
+
+h3{
+    font-size: 20px;
+}
+
+p{
+    padding: 4px;
+    margin: 0px;
+ }
+
+.card{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    border: var(--border-card);
+    border-radius: 12px;
+}
+
+.card .card-content .card-content-main,
+.card .card-content .card-item,
+.card .card-links{
+    border-top: var(--border-card);
+    padding: 4px;
+    align-items: center;    
+}
+.card > img {
+    display: block;
+    border-top-right-radius: 10px ;
+    border-top-left-radius: 10px ;
+}
+
+.card .card-links{
+    display: flex;
+    padding: 20px 20px 20px 4px;
+    gap:12px;
+}
