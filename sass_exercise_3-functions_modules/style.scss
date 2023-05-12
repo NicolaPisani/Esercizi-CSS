@@ -1,0 +1,52 @@
+$color-primary: red;
+$color-secondary: blue;
+$color-tertiary: green;
+
+@use "./functions" as f; // assignment suggestion
+body .container {
+  border: f.Rem(1px) solid $color-primary;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-content: stretch;
+
+  h1 {
+    color: $color-tertiary;
+    text-decoration: underline;
+    text-decoration-color: $color-secondary;
+    text-align: center;
+  }
+
+  @mixin article_features(
+    $border-color: $color-tertiary,
+    $font-size: 1rem,
+    $color_odd: $color-secondary,
+    $color_even: $color-primary
+  ) {
+    display: flex;
+    margin: 1rem;
+    font-size: f.Rem($font-size);
+
+    article {
+      padding: 1rem;
+      text-align: center;
+      border: f.Rem(1px) solid $border-color;
+
+      &:nth-child(even) {
+        color: $color-even;
+      }
+
+      &:nth-child(odd) {
+        color: $color-odd;
+      }
+    }
+  }
+
+  .article_container {
+    @include article_features();
+  }
+
+  .last {
+    @include article_features($color-secondary, 2rem, $color-tertiary);
+  }
+}

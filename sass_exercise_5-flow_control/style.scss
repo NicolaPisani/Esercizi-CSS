@@ -1,0 +1,103 @@
+@use "./functions" as f; // assignment suggestion
+@use "./variables" as var; // assignment suggestion
+
+body .container {
+  border: f.Rem(var.$border) solid var.$color-primary;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+
+  %h1 {
+    color: var.$color-tertiary;
+    text-decoration: underline;
+    text-decoration-color: var.$color-secondary;
+    text-align: center;
+  }
+
+  h1 {
+    @extend %h1;
+  }
+
+  h2 {
+    @extend %h1;
+    padding: f.Rem(var.$padding2);
+    border: f.Rem(var.$border) solid var.$color-primary;
+    text-decoration: none;
+    margin: 0 auto f.Rem(5px);
+  }
+
+  @mixin article_features(
+    $border-color: var.$color-tertiary,
+    $font-size: 1rem,
+    $color_odd: var.$color-secondary,
+    $color_even: var.$color-primary
+  ) {
+    display: flex;
+    margin: f.Rem(var.$margin);
+    font-size: f.Rem($font-size);
+
+    article {
+      padding: f.Rem(var.$padding);
+      text-align: center;
+      border: f.Rem(var.$border) solid $border-color;
+
+      &:nth-child(even) {
+        color: $color-even;
+      }
+
+      &:nth-child(odd) {
+        color: $color-odd;
+      }
+    }
+  }
+
+  .article_container {
+    @include article_features;
+  }
+
+  .numberList {
+    display: flex;
+    justify-content: space-between;
+   
+    overflow: scroll;
+    margin: f.Rem(var.$margin);
+
+    div {
+      flex-grow: 1;
+      gap: 1rem;
+      border: f.Rem(var.$border) solid;
+      max-height: f.Rem(var.$boxSide); //45px in variables module
+      max-width: f.Rem(var.$boxSide); //45px in variables module
+
+      $box: 20; //solved with assignment suggestion/documentation 
+      @for $i from 1 to $box {
+        &:nth-child(#{$i}) {
+          @if $i == 10 {
+            background-color: var.$color-secondary;
+            color: var.$color-primary;
+          } @else {
+            $percentage: $i * 5%;
+            color: lighten($color: black, $amount: $percentage);
+            background-color: darken($color: white, $amount: $percentage);
+          }
+        }
+      }
+      $font-sizes: 1rem, 2rem, 3rem;
+
+      @each $font-size in $font-sizes {
+        &.fs-#{$font-size} {
+          font-size: $font-size;
+        }
+      }
+    }
+  }
+
+  .last {
+    @include article_features(var.$color-secondary, 1rem, var.$color-tertiary);
+    margin-bottom: f.Rem(var.$margin-bottom);
+    & article {
+      flex-grow: 1;
+    }
+  }
+}
